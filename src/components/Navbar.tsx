@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X, User, ArrowRight, ShieldCheck } from "lucide-react";
+import { Menu, X, User, ArrowRight, Sparkles } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -77,7 +77,15 @@ export default function Navbar() {
         </nav>
 
         {/* Actions & CTA */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-ace-chat"))}
+            className="hidden md:inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-[#191b23] border border-[#4cd7f6]/30 hover:border-[#4cd7f6]/70 text-[#4cd7f6] hover:text-white hover:bg-[#272a32] text-xs font-semibold tracking-wide transition-all cursor-pointer"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-[#4cd7f6]" />
+            <span>AI Advisor</span>
+          </button>
+
           <Link
             href="#consultation-card"
             className="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#2563eb] text-white text-sm font-semibold tracking-wide shadow-[0_0_24px_rgba(37,99,235,0.45)] hover:shadow-[0_0_32px_rgba(37,99,235,0.7)] hover:bg-[#1d4ed8] active:scale-[0.98] transition-all"
@@ -153,14 +161,27 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <Link
-            href="#consultation-card"
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#2563eb] text-white font-semibold text-sm shadow-lg shadow-[#2563eb]/30 hover:bg-[#1d4ed8] transition-all"
-          >
-            <span>Schedule Consultation</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.dispatchEvent(new CustomEvent("open-ace-chat"));
+              }}
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#191b23] border border-[#4cd7f6]/30 text-[#4cd7f6] font-semibold text-sm hover:bg-[#272a32] transition-all cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4 text-[#4cd7f6]" />
+              <span>Talk to AI Architecture Advisor</span>
+            </button>
+
+            <Link
+              href="#consultation-card"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#2563eb] text-white font-semibold text-sm shadow-lg shadow-[#2563eb]/30 hover:bg-[#1d4ed8] transition-all"
+            >
+              <span>Schedule Consultation</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       )}
     </header>

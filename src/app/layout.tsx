@@ -47,6 +47,8 @@ export const metadata: Metadata = {
   },
 };
 
+import ChatbotWidget from "@/components/ChatbotWidget";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,6 +61,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-[#10131a] text-[#e1e2ec] font-sans antialiased selection:bg-[#2563eb]/30 selection:text-[#4cd7f6]">
         {children}
+        <ChatbotWidget />
       </body>
     </html>
   );
